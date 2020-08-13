@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html color-mode="light" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Page</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://kit.fontawesome.com/8c78196477.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <!-- Header & Navigation Menu -->
+  <nav id="navbar">
+    <header class="title-container">
+      <!-- Main Header -->
+      <h1 class="title">PIG GAME</h1>
+      <!-- Navigation Burger -->
+      <div class="nav-burger">
+        <div class="nav-burger-line"></div>
+      </div>
+    </header>
+    <!-- Navigation Menu -->
+    <ul class="nav-list active">
+      <li class="nav-item"><a href="#pig_game_description" class="nav-link">Pig Game Description</a></li>
+      <li class="nav-item"><a href="#pig_game_structure" class="nav-link">Pig Game Structure</a></li>
+      <li class="nav-item"><a href="#pig_game_style" class="nav-link">Pig Game Style</a></li>
+      <li class="nav-item"><a href="#pig_game_functionality" class="nav-link">Pig Game Functionality</a></li>
+      <li class="nav-item"><a href="#new_game" class="nav-link">New Game</a></li>
+      <li class="nav-item"><a href="#roll_dice" class="nav-link">Roll Dice</a></li>
+      <li class="nav-item"><a href="#next_player" class="nav-link">Next Player</a></li>
+      <li class="nav-item"><a href="#hold_score" class="nav-link">Hold Score</a></li>
+      <li class="nav-item"><a href="#game_over" class="nav-link">Game Over</a></li>
+      <li class="nav-item"><a href="#pig_game_resume" class="nav-link">Pig Game Resume</a></li>
+    </ul>
+  </nav>
+  <!-- Main Content -->
+  <main id="main-doc">
+    <!-- Light Bulb Light & Dark 
+    <button 
+      class="color-mode__btn light--hidden" aria-label="Toggle light mode">
+      <i aria-hidden="true" class="far fa-lightbulb"></i>
+    </button>
+    
+    <button 
+      class="color-mode__btn dark--hidden" aria-label="Toggle dark mode">
+      <i aria-hidden="true" class="fas fa-lightbulb"></i>
+    </button>
+    -->
+    <!-- Section Description -->
+    <section class="main-section" id="pig_game_description">
+      <header>
+        <h2 class="main-section__heading">Pig Game Description</h2>
+      </header>
+      <ul class="main-section__rules">
+        <li class="main-section__rules__item">The game has two players who are playing by rounds.</li>
+        <li class="main-section__rules__item">In each turn, a player rolls a dice as many times as wishes and the result get added to the round socre.</li>
+        <li class="main-section__rules__item">When rolling the dice if result is 1, the round score get lost and the next player plays.</li>
+        <li class="main-section__rules__item">If player choose to hold the current score, it is added to the personal global score and the next player plays.</li>
+        <li class="main-section__rules__item">The first player to reach 100 points on global score wins the game.</li>
+      </ul>
+    </section>
+    <!-- Section Structure -->
+    <section class="main-section" id="pig_game_structure">
+      <header>
+        <h2 class="main-section__heading">Pig Game Structure</h2>
+      </header>
+      <div class="main-section__information">
+        <p class="main-section__text">
+          First of all to start creating the game it is necessary to make the <strong>html</strong>. For that we create two div elements that contains each player information. In each of them we can see the players name and below, the global score that is updated every time that a player holds the current score, and as we know, is the sum of every result when dice is rolled less when result is one. <br>
+
+          To make the game work, we just have to include three button elements. One is <q>roll-dice</q>, the other is <q>hold-score</q> and the last one is an option to reset all to start a <q>new game</q>.
+        </p>
+      </div>
+    </section>
+    <!-- Section Style -->
+    <section class="main-section" id="pig_game_style">
+      <header>
+        <h2 class="main-section__heading">Pig Game Style</h2>
+      </header>
+      <div class="main-section__information">
+        <p class="main-section__text">
+          The <strong>css</strong> style of the game is pretty simple, every player has his own panel where the information already explained. We included the basics for font-style and some position elements to align and transform the text, as well as some margin and paddings. <br>
+
+          Need to say that everytime that a player is playing the class <q>active</q> is added to the panel of current player, where the style changes to know that this is the one who's playing. We will explain how it changes in JavaScript section. <br>
+
+          The page does have few more elements to style the buttons and the dice image, all of them in the middle of the page and the buttons has some hover pseudo element to make it more accesible when playing the game.
+        </p>
+      </div>
+    </section>
+    <!-- Section Functionality -->
+    <section class="main-section" id="pig_game_functionality">
+      <header>
+        <h2 class="main-section__heading">Pig Game Functionality</h2>
+      </header>
+      <div class="main-section__information">
+        <h3 class="main-section__heading-two" id="new_game">New Game</h3>
+        <p class="main-section__text-two">
+          We start creating the <strong>JavaScript</strong> file declaring four variables but not giving them any value. We are giving them value inside a function that we create to make the game start from 0. <br>
+
+          In said function we specify that when the game starts the dice image will be hidden. <code>document.querySelector('.dice').style.display = 'none';</code>. We make global and current scores start from 0 but this time using <code>document.getElementById('score-0').textContent = '0';</code> and <code>document.getElementById('current-0').textContent = '0';</code>, one for each player. <br>
+
+          The game starts with the name of each player on the top of each panel, which is changed when game is over.
+        </p>
+      </div>
+    </section>
+    <!-- Section Roll Dice -->
+    <section class="main-section" id="roll_dice">
+      <header>
+        <h3 class="main-section__heading-two">Roll Dice</h3>
+      </header>
+      <div class="main-section__information"></div>
+        
+        <p class="main-section__text-two">
+          To start playing the game, we create an event to make the roll dice and get numbers randomly. For that instead of using an element to change style, we use <code>document.querySelector('.btn-roll').addEventListener('click', function()</code>, specifiying that when button is clicked something will happen. <br>
+
+          First of all we make a random number appear using <code>dice = Math.floor(Math.random() * 6) + 1;</code>. When this is executed we make the dice appear again and include the number we got in the scr of the element created for the dice image in the html <code>diceDOM.src = 'dice-' + dice + '.png';</code>. <br>
+
+          The last thing we want when we roll the dice is to reset the round score to 0 and change the player if the given number is equal to 1.
+        </p>
+      </div>
+    </section>
+    <!-- Section Next Player -->
+    <section class="main-section" id="next_player">
+      <header>
+        <h3 class="main-section__heading-two">Next Player</h3>
+      </header>
+      <div class="main-section__information">
+        <p class="main-section__text-two">
+          To make the next player play we create a function and for first time we use a ternary operator <code>activePlayer === 0 ? activePlayer = 1 :</code>. Here we say that if the player who is  playing is 0, will change to 1 and vice versa. <br>
+        
+          For first time we use the toggle element to make a class selector change from one player to another <code>document.querySelector('.player-0-panel').classList.toggle('active');</code>. <br>
+      
+          When player changes we want the current score to reset to 0 and hide the dice for the new player.   
+        </p>
+      </div>
+    </section>
+    <!-- Section Hold Score -->
+    <section class="main-section" id="hold_score">
+      <header>
+        <h3 class="main-section__heading-two">Hold Score</h3>
+      </header>
+      <div class="main-section__information">
+        <p class="main-section__text-two">
+          When a player is playing his turn and wants to hold the current score we create an event function to keep it in global score <code>scores[activePlayer] += roundScore;</code>. <br>
+
+          As we know from the game rules if any player reaches 100 points wins the game. To make this we use a boolean expresion.
+        </p>
+        <img class="image" src="carbon.png" alt="Boolean Expresion">
+      </div>
+    </section>
+    <!-- Section Game Over -->
+    <section class="main-section" id="game_over">
+      <header>
+        <h3 class="main-section__heading-two">Game Over</h3>
+      </header>
+      <div class="main-section__information">
+        <p class="main-section__text-two">
+          When a player reaches a score of 100 the game is over and all functionalities for the roll and hold button are disabled. To start a new game in the already created function for new game, we included some functionalities to reset the parameters from the last game using two new functions <q>remove and add</q>.
+        </p>
+
+        <p class="main-section__text-two">
+          <code>document.querySelector('.player-0-panel').classList.remove('winner');</code>, one for each player. <br> 
+
+          <code>document.querySelector('.player-0-panel').classList.remove('active');</code>, one for each player. <br>
+
+          <code>document.querySelector('.player-0-panel').classList.add('active');</code>.
+        </p>
+      </div>
+    </section>
+    <!-- Section Resume -->
+    <section class="main-section" id="pig_game_resume">
+      <header>
+        <h2 class="main-section__heading">Pig Game Resume</h2>
+      </header>
+      
+      <div class="main-section__information">
+        <p class="main-section__text">
+          Finished my first JavaScript application I discovered many new things and concepts. For first time I used the DOM to control and manipulate elements from the HTML and understand how important can be for the functionality of the page. I looking forward to use it in done projects and start doing better works with it. Important for me to undestarnd elements like <q>querySelector, getElementById, or addEventListener</q> to control and create events when an action is executed.
+        </p> <br>
+
+        <p class="main-section__text">
+          Understood the boolean expresion but not feeling confortable enough about how to indicate the action that I want to create. With this first game I learnt many concepts and I am waiting to expand and refresh this knowledge with many new projects.
+        </p>
+
+        <a href="https://genesismandela.github.io/Pyg-Game/" class="main-section__text main-section__link">Pyg Game</a>
+      </div>
+    </section>
+    <!-- Section Copyright -->
+    <div class="copyright">Mandela Samboy. June 2020</div>
+  </main>
+  <script src="main.js"></script>
+</body>
+</htmlcolor-mode="light">
